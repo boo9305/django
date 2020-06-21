@@ -7,6 +7,10 @@ class UpLoadFile(models.Model):
     title = models.TextField(default="")
     file = models.FileField(null=True)
     
+class PostTest(models.Model):
+    title = models.TextField(max_length=300)
+    contents = models.TextField()
+    
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField(max_length=300)

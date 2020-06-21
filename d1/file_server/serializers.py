@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Comment
+from .models import Post, Comment, PostTest
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,7 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
          user.save()
          return user
 
-    
+
+class PostTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostTest
+        fields = ( 'title', 'contents')
+
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
