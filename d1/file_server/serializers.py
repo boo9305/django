@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PostTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostTest
-        fields = ( 'title', 'contents')
+        fields = ( 'pk', 'title', 'contents')
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
