@@ -9,6 +9,5 @@ urlpatterns = [
 router = routers.DefaultRouter()
 # router.register(r'user', views.UserViewSet)
 router.register(r'post', views.PostViewSet)
-router.register(r'posttest', views.PostTestViewSet)
 router.register(r'comment', views.CommentViewSet)
 urlpatterns += router.urls

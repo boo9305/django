@@ -6,10 +6,7 @@ from django.contrib.auth.models import User
 class UpLoadFile(models.Model):
     title = models.TextField(default="")
     file = models.FileField(null=True)
-    
-class PostTest(models.Model):
-    title = models.TextField(max_length=300)
-    contents = models.TextField()
+
     
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -20,7 +17,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(PostTest, related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     contents = models.TextField(max_length=300)
     create_date = models.DateField(auto_now_add=True)
     update_date = models.DateField(auto_now=True)
