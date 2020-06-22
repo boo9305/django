@@ -24,9 +24,15 @@ class PostListView(generics.ListAPIView):
 class PostTestViewSet(viewsets.ModelViewSet):
     queryset = PostTest.objects.all()
     serializer_class = PostTestSerializer
-    permission_classes = [IsAuthenticated]
+#    permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
-  
+    
+    #  def retrieve(self, request, pk=None):
+    #      post= PostTest.objects.get(pk=pk)
+    #      comments = Comment.objects.filter(post=post)
+
+        
+
 # post viewsets
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()

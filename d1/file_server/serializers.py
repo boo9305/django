@@ -14,10 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
          return user
 
 
-class PostTestSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PostTest
-        fields = ( 'pk', 'title', 'contents')
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,3 +24,10 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('pk', 'author', 'post', 'contents')
+
+class PostTestSerializer(serializers.ModelSerializer):
+    comments = CommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = PostTest
+        fields = ( 'pk', 'title', 'contents', 'comments')
