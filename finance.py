@@ -29,3 +29,10 @@ for page in range(1, 21):
 
 df = df.dropna()
 print(df.head())
+
+
+for i in range(10000):
+    str = "board%s" % i
+    board = Board(name=str)
+    board.save()
+    
