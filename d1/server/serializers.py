@@ -15,12 +15,21 @@ class BoardSerializer(serializers.ModelSerializer):
         
 ###### Comment Serializer
 class CommentSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    
     class Meta:
         model = Comment
         fields = ('pk', 'author', 'post', 'contents')
 
+class CommentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('pk', 'post', 'contents')
+
 ###### Post Serializer
 class PostListSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    board = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Post
         fields = ('pk', 'author', 'board', 'title', 'contents')
@@ -32,7 +41,7 @@ class PostCreateSerializer(serializers.ModelSerializer):
         fields = ('pk', 'board', 'title', 'contents')
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    #board = serializers.StringRelatedField(read_only=True)
+    author = serializers.StringRelatedField()
     comments = CommentSerializer(read_only=True, many=True)
     class Meta:
         model = Post

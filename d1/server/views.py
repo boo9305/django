@@ -7,7 +7,9 @@ from rest_framework.authentication import TokenAuthentication
 
 from django.contrib.auth.models import User
 from .models import Post, Comment
-from .serializers import UserSerializer, PostListSerializer, CommentSerializer , PostDetailSerializer, PostCreateSerializer
+from .serializers import UserSerializer
+from .serializers import CommentSerializer ,CommentCreateSerializer
+from .serializers import PostListSerializer, PostDetailSerializer, PostCreateSerializer
 
 # post viewsets
 
@@ -48,3 +50,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+
+    def get_serializer_class(self):
+        if self.action == "create" :
+            return CommentCreateSerializer
+        return CommentSerializer
+
+    def perform_create(self,serializer):
+        print("k")
+        serializer.save(author=self.request.user)
