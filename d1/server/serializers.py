@@ -29,21 +29,21 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 ###### Post Serializer
 class PostListSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
-    board = serializers.StringRelatedField(read_only=True)
+    #board = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Post
-        fields = ('pk', 'author', 'board', 'title', 'contents')
+        fields = ('pk', 'author', 'title', 'contents')
 
 class PostCreateSerializer(serializers.ModelSerializer):
     #board = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Post
-        fields = ('pk', 'board', 'title', 'contents')
+        fields = ('pk', 'title', 'contents')
 
 class PostDetailSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     comments = CommentSerializer(read_only=True, many=True)
     class Meta:
         model = Post
-        fields = ('pk', 'author', 'board', 'hit', 'title', 'contents' , 'comments')
+        fields = ('pk', 'author', 'hit', 'title', 'contents' , 'comments')
         

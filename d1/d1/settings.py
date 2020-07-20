@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'corsheaders',
     'server',
+    'exercise',
 
     'debug_toolbar'
 ]
@@ -115,7 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -142,3 +145,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True;
+

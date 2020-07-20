@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.authentication import TokenAuthentication
 
 from django.contrib.auth.models import User
@@ -16,12 +16,11 @@ from .serializers import PostListSerializer, PostDetailSerializer, PostCreateSer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
 
 class PostViewSet(viewsets.ModelViewSet):
-    #queryset = Post.objects.all()
-    #serializer_class = PostListSerializer
-    #permission_classes = [IsAuthenticated]
-    #authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
     def get_serializer_class(self):
         if self.action == 'retrieve':
             return PostDetailSerializer

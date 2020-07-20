@@ -14,7 +14,7 @@ class Board(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
+#    board = models.ForeignKey(Board, on_delete=models.CASCADE)
     title = models.TextField(max_length=300)
     contents = models.TextField()
 
@@ -28,8 +28,6 @@ class Post(models.Model):
     def increase_hit(self):
         self.hit = self.hit + 1
 
-    class Meta:
-        unique_together = ['author', 'board']
     def __str__(self):
         return self.title
 
